@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#173f32">
+<title>PLANTEX | Explore the Future of Farming</title>
+<style>
+:root{--forest:#173f32;--leaf:#397b50;--lime:#c6dc87;--cream:#f8f4e8;--ink:#20352b;--gold:#e6b85c;--glass:rgba(255,255,255,.88)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#e9efdf;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+button{font:inherit;cursor:pointer}.app{min-height:100vh;background:radial-gradient(circle at 15% 5%,#f9f3d9,transparent 32%),linear-gradient(135deg,#eaf0df,#d8e8d1)}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px clamp(14px,4vw,48px);background:var(--forest);color:white;position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:11px}.logo{width:42px;height:42px;border-radius:14px;background:var(--lime);color:var(--forest);display:grid;place-items:center;font-size:25px;font-weight:900}.brand b{letter-spacing:2px;font-size:22px}.brand small{display:block;color:#d1e2c8;font-size:11px;letter-spacing:1px}
+.header-actions{display:flex;gap:8px;align-items:center}.pill{border:1px solid #ffffff55;background:#ffffff12;color:white;padding:9px 14px;border-radius:999px}
+.hero{padding:24px clamp(14px,4vw,48px) 10px;display:flex;justify-content:space-between;align-items:end;gap:16px}.eyebrow{color:var(--leaf);font-weight:800;letter-spacing:2px;font-size:11px}.hero h1{margin:5px 0;font-size:clamp(25px,4vw,42px);color:var(--forest);line-height:1.15}.hero p{margin:6px 0;color:#536b59;max-width:650px;font-size:14px;line-height:1.7}.hint{background:#fff9e9;border:1px solid #e9d9a8;color:#785d26;padding:10px 14px;border-radius:14px;font-size:12px;white-space:nowrap}
+.map-wrap{padding:12px clamp(10px,3vw,36px) 28px}.map-frame{position:relative;max-width:1400px;margin:auto;border:9px solid #fff;border-radius:28px;overflow:hidden;box-shadow:0 18px 55px #294c3025;background:#b8d6a6}
+.map-svg{display:block;width:100%;height:auto;min-height:370px}.map-title{position:absolute;top:16px;left:18px;background:#fffdf0e8;border:1px solid #e7dfbd;border-radius:14px;padding:9px 13px;color:var(--forest);font-size:12px;font-weight:800;box-shadow:0 4px 15px #24452a20}
+.hotspot{position:absolute;transform:translate(-50%,-50%);border:0;background:transparent;color:var(--forest);display:flex;flex-direction:column;align-items:center;gap:4px;z-index:1;min-width:76px}
+.hotspot .pin{width:44px;height:44px;border-radius:50% 50% 50% 12px;transform:rotate(-45deg);background:#fffdf4;border:3px solid var(--leaf);box-shadow:0 5px 12px #23452b45;display:grid;place-items:center;transition:.2s}
+.hotspot .pin span{transform:rotate(45deg);font-size:21px}.hotspot strong{background:#fffdf0ed;border:1px solid #d7e0c9;padding:4px 8px;border-radius:8px;font-size:11px;box-shadow:0 3px 8px #24452a20;white-space:nowrap}
+.hotspot:active .pin,.hotspot:focus-visible .pin{transform:rotate(-45deg) scale(1.16);background:var(--lime);outline:3px solid #fff}
+.hotspot:focus-visible{outline:none}.hotspot:hover .pin{transform:rotate(-45deg) scale(1.12)}
+.legend{max-width:1400px;margin:12px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.legend span{background:#ffffffb8;border:1px solid #dce5d5;padding:7px 11px;border-radius:999px;font-size:11px;color:#4a634e}
+footer{padding:8px 18px 24px;text-align:center;color:#607662;font-size:11px}
+.modal{position:fixed;inset:0;background:#10271fd9;display:none;align-items:center;justify-content:center;padding:14px;z-index:10;backdrop-filter:blur(7px)}.modal.open{display:flex}.dialog{width:min(900px,100%);max-height:min(92vh,900px);overflow:auto;background:var(--cream);border-radius:24px;box-shadow:0 25px 80px #0006;position:relative;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.dialog-head{padding:24px 26px 15px;background:linear-gradient(120deg,#e4efd9,#fbf3d9);border-bottom:1px solid #e4e5d5;display:flex;gap:14px;align-items:center}.big-icon{width:64px;height:64px;border-radius:20px;background:#fff;border:1px solid #dce5d3;display:grid;place-items:center;font-size:32px;flex:none}.dialog-head h2{margin:0;color:var(--forest);font-size:clamp(21px,4vw,30px)}.dialog-head p{margin:4px 0 0;color:#68806a;font-size:12px}.close{position:absolute;top:13px;left:13px;border:0;border-radius:50%;width:38px;height:38px;background:#fff;color:#31533e;font-size:22px;z-index:2}.content{padding:22px 26px 26px}.slide{display:none;min-height:205px}.slide.active{display:block}.slide h3{color:#315e40;margin:0 0 10px;font-size:19px}.slide p{line-height:1.9;color:#43584a;margin:0 0 12px;font-size:15px}.fact{background:#e8efdf;border-right:4px solid #6d9b57;padding:12px 15px;border-radius:12px;line-height:1.8;color:#36513c;font-size:13px;margin-top:12px}.visual{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.visual span{background:white;border:1px solid #e4e5d7;border-radius:12px;padding:10px 13px;font-size:12px;color:#4c684e}.nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;border-top:1px solid #e3e4d7;padding-top:15px}.nav button{border:0;background:var(--forest);color:white;border-radius:12px;padding:10px 16px}.nav button:disabled{opacity:.35;cursor:not-allowed}.count{font-size:12px;color:#6a7e69}
+@media(max-width:650px){header{padding:12px 14px}.brand b{font-size:18px}.hero{display:block;padding-top:18px}.hint{display:inline-block;margin-top:8px;white-space:normal}.map-wrap{padding:8px 8px 22px}.map-frame{border-width:5px;border-radius:18px}.map-svg{min-height:320px}.hotspot{min-width:54px;gap:3px}.hotspot .pin{width:34px;height:34px;border-width:2px}.hotspot .pin span{font-size:17px}.hotspot strong{font-size:9px;padding:3px 5px}.map-title{font-size:10px;top:8px;left:8px;padding:6px 8px}.dialog-head{padding:20px 18px 13px}.content{padding:18px}.big-icon{width:52px;height:52px;font-size:26px}.slide p{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="brand"><div class="logo">✿</div><div><b>PLANTEX</b><small>GROW SMART. GROW GREEN.</small></div></div>
+ <div class="header-actions"><button class="pill" id="langBtn" onclick="toggleLang()">EN</button><button class="pill" onclick="showWelcome()" id="aboutBtn">عن المشروع</button></div>
+</header>
+<section class="hero">
+ <div><div class="eyebrow" id="eyebrow">رحلة داخل مزرعة المستقبل</div><h1 id="mainTitle">اكتشفوا عالم PLANTEX</h1><p id="intro">مرحبًا بكم في مزرعتنا الذكية. اختاروا أي موقع على الخريطة لاستكشاف البحث العلمي والتقنيات التي تساعدنا على زراعة مستقبل أكثر استدامة.</p></div>
+ <div class="hint" id="hint">👆 اضغطوا على أي علامة لبدء الاستكشاف</div>
+</section>
+<main class="map-wrap">
+<div class="map-frame">
+ <div class="map-title" id="mapLabel">🌿 خريطة PLANTEX التفاعلية</div>
+ <svg class="map-svg" viewBox="0 0 1200 700" role="img" aria-label="Illustrated PLANTEX farm map">
+ <defs>
+  <linearGradient id="grass" x2="0" y2="1"><stop stop-color="#cce1a9"/><stop offset="1" stop-color="#a9ce91"/></linearGradient>
+  <linearGradient id="water" x2="1" y2="1"><stop stop-color="#a8dce0"/><stop offset="1" stop-color="#73bdc5"/></linearGradient>
+  <pattern id="rows" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M0 0 Q14 14 0 28 M14 0 Q28 14 14 28" fill="none" stroke="#dcae4d" stroke-width="5" opacity=".8"/></pattern>
+  <pattern id="soil" width="32" height="22" patternUnits="userSpaceOnUse"><path d="M0 7 Q8 1 16 7 T32 7 M0 17 Q8 11 16 17 T32 17" fill="none" stroke="#b47c52" stroke-width="2" opacity=".4"/></pattern>
+ </defs>
+ <rect width="1200" height="700" fill="url(#grass)"/>
+ <path d="M-30 500 C160 430 190 570 350 510 S560 420 680 500 S940 580 1230 440" fill="none" stroke="#f2e5bd" stroke-width="82"/>
+ <path d="M-30 500 C160 430 190 570 350 510 S560 420 680 500 S940 580 1230 440" fill="none" stroke="#fff7df" stroke-width="5" stroke-dasharray="14 18"/>
+ <path d="M400 -20 C420 150 600 190 570 330 S650 510 800 730" fill="none" stroke="#f2e5bd" stroke-width="68"/>
+ <path d="M400 -20 C420 150 600 190 570 330 S650 510 800 730" fill="none" stroke="#fff7df" stroke-width="4" stroke-dasharray="12 16"/>
+ <!-- wheat field -->
+ <path d="M35 55 Q210 5 390 75 L370 330 Q185 375 45 300Z" fill="#eac66e" stroke="#fff1bd" stroke-width="8"/>
+ <path d="M48 66 Q210 20 378 83 L360 318 Q190 350 55 292Z" fill="url(#rows)"/>
+ <g fill="#d59d39"><path d="M90 120l-8-28 12 15 8-22 3 30zM145 200l-8-30 13 15 8-22 3 32zM270 130l-8-30 13 15 8-22 3 32zM325 240l-8-30 13 15 8-22 3 32z"/></g>
+ <!-- lab building -->
+ <rect x="720" y="65" width="220" height="150" rx="18" fill="#f7f4e8" stroke="#6c9870" stroke-width="8"/>
+ <path d="M700 78 L830 15 L960 78Z" fill="#477c57" stroke="#315e43" stroke-width="6"/>
+ <rect x="755" y="112" width="55" height="58" rx="8" fill="#a9d7d6"/><rect x="835" y="112" width="70" height="58" rx="8" fill="#a9d7d6"/>
+ <rect x="812" y="165" width="42" height="50" fill="#a77a50"/>
+ <text x="830" y="100" text-anchor="middle" font-size="20" font-weight="bold" fill="#315e43">LAB</text>
+ <!-- greenhouse -->
+ <path d="M905 330 L1050 270 L1180 330 L1180 455 L905 455Z" fill="#b8ded0" stroke="#477c57" stroke-width="8"/>
+ <path d="M905 330L1050 270L1180 330M1048 275V452M905 390H1180" fill="none" stroke="#6c9e82" stroke-width="5"/>
+ <path d="M930 410q20-65 40 0m18 0q20-65 40 0m20 0q20-65 40 0m20 0q20-65 40 0" fill="none" stroke="#397b50" stroke-width="9"/>
+ <!-- root underground -->
+ <path d="M70 390 Q260 345 430 390 L430 560 Q260 610 70 560Z" fill="#d5a77c" stroke="#fff0d0" stroke-width="8"/>
+ <path d="M70 475 Q250 430 430 475V560Q250 610 70 560Z" fill="url(#soil)"/>
+ <path d="M250 398v80m0-40l-45 40m45-18l45 25m-45-45l-12 60m12-28l28 55" stroke="#5c8f50" stroke-width="9" fill="none" stroke-linecap="round"/>
+ <g fill="#e6c56d"><circle cx="190" cy="490" r="7"/><circle cx="320" cy="520" r="7"/><circle cx="350" cy="465" r="6"/><circle cx="155" cy="530" r="6"/></g>
+ <!-- sensors -->
+ <rect x="500" y="90" width="130" height="100" rx="18" fill="#f4f1df" stroke="#5c8b63" stroke-width="7"/>
+ <rect x="525" y="112" width="80" height="42" rx="7" fill="#c1e3cf"/><path d="M565 190v60m-35-60h70" stroke="#5c8b63" stroke-width="8"/>
+ <path d="M550 250v45m30-45v45" stroke="#477c57" stroke-width="5"/>
+ <!-- solar -->
+ <g transform="translate(700 510)"><path d="M0 40L250 0L270 100L20 140Z" fill="#42718a" stroke="#f3f0db" stroke-width="7"/><path d="M55 30L75 125M115 20L135 115M180 10L200 105M10 85L260 45" stroke="#d4e8ed" stroke-width="5"/><path d="M130 140v40m-45 0h90" stroke="#806a48" stroke-width="9"/></g>
+ <!-- community garden -->
+ <ellipse cx="510" cy="610" rx="135" ry="65" fill="#8ebd78" stroke="#f6edcf" stroke-width="8"/>
+ <g fill="#397b50"><circle cx="440" cy="590" r="26"/><circle cx="500" cy="570" r="32"/><circle cx="565" cy="600" r="28"/><circle cx="485" cy="630" r="25"/></g>
+ <g stroke="#89623f" stroke-width="9"><path d="M440 615v-35m60 20v-45m65 75v-35m-80 70v-35"/></g>
+ <!-- team pavilion -->
+ <rect x="65" y="90" width="130" height="95" rx="15" fill="#f8f0d9" stroke="#6d8d60" stroke-width="6"/>
+ <path d="M52 100L130 48L208 100Z" fill="#d98e60" stroke="#9b6546" stroke-width="5"/>
+ <rect x="112" y="130" width="38" height="55" fill="#a77a50"/>
+ <!-- decorative pond -->
+ <path d="M980 80 Q1080 25 1150 95 Q1190 150 1115 185 Q1030 205 980 150Z" fill="url(#water)" stroke="#eff8dc" stroke-width="8"/>
+ <g fill="#fff" opacity=".65"><path d="M1020 105q35-15 65 0"/><path d="M1070 145q25-12 48 0"/></g>
+ <!-- trees -->
+ <g><g transform="translate(640 330)"><rect x="-7" y="18" width="14" height="40" fill="#8b6542"/><circle cy="5" r="34" fill="#4f8a56"/><circle cx="-20" cy="-8" r="22" fill="#68a765"/></g>
+ <g transform="translate(110 650)"><rect x="-7" y="18" width="14" height="40" fill="#8b6542"/><circle cy="5" r="34" fill="#4f8a56"/></g>
+ <g transform="translate(1080 570)"><rect x="-7" y="18" width="14" height="40" fill="#8b6542"/><circle cy="5" r="34" fill="#4f8a56"/></g>
+ <g transform="translate(1010 230)"><rect x="-6" y="15" width="12" height="35" fill="#8b6542"/><circle cy="0" r="26" fill="#5a995d"/></g></g>
+ <g fill="#fff4d7" opacity=".8"><circle cx="35" cy="30" r="5"/><circle cx="470" cy="65" r="6"/><circle cx="665" cy="250" r="5"/><circle cx="1160" cy="230" r="6"/></g>
+ </svg>
+ <button class="hotspot" style="left:19%;top:24%" onclick="openPlace('team')" aria-label="Our team"><span class="pin"><span>👩‍🔬</span></span><strong data-ar="فريقنا" data-en="Our Team">فريقنا</strong></button>
+ <button class="hotspot" style="left:20%;top:48%" onclick="openPlace('wheat')" aria-label="Wheat field"><span class="pin"><span>🌾</span></span><strong data-ar="حقل القمح" data-en="Wheat Field">حقل القمح</strong></button>
+ <button class="hotspot" style="left:28%;top:72%" onclick="openPlace('roots')" aria-label="Root zone"><span class="pin"><span>🌱</span></span><strong data-ar="منطقة الجذور" data-en="Root Zone">منطقة الجذور</strong></button>
+ <button class="hotspot" style="left:69%;top:22%" onclick="openPlace('lab')" aria-label="PGPR laboratory"><span class="pin"><span>🧫</span></span><strong data-ar="مختبر PGPR" data-en="PGPR Lab">مختبر PGPR</strong></button>
+ <button class="hotspot" style="left:48%;top:35%" onclick="openPlace('iot')" aria-label="IoT station"><span class="pin"><span>📡</span></span><strong data-ar="محطة IoT" data-en="IoT Station">محطة IoT</strong></button>
+ <button class="hotspot" style="left:86%;top:56%" onclick="openPlace('greenhouse')" aria-label="Smart greenhouse"><span class="pin"><span>🏡</span></span><strong data-ar="البيت المحمي" data-en="Greenhouse">البيت المحمي</strong></button>
+ <button class="hotspot" style="left:80%;top:82%" onclick="openPlace('solar')" aria-label="Solar energy"><span class="pin"><span>☀️</span></span><strong data-ar="الطاقة الشمسية" data-en="Solar Energy">الطاقة الشمسية</strong></button>
+ <button class="hotspot" style="left:44%;top:87%" onclick="openPlace('community')" aria-label="Community garden"><span class="pin"><span>🌳</span></span><strong data-ar="حديقة المجتمع" data-en="Community Garden">حديقة المجتمع</strong></button>
+</div>
+<div class="legend" id="legend"><span>🌾 البحث الزراعي</span><span>🧫 التقنية الحيوية</span><span>📡 الزراعة الذكية</span><span>🌳 الأثر المجتمعي</span></div>
+</main>
+<footer id="footer">PLANTEX · مشروع يجمع التقنية الحيوية والذكاء الاصطناعي وإنترنت الأشياء من أجل زراعة أكثر استدامة</footer>
+</div>
+<div class="modal" id="modal" onclick="backdropClose(event)">
+ <article class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+  <button class="close" onclick="closeModal()" aria-label="Close">×</button>
+  <div class="dialog-head"><div class="big-icon" id="dialogIcon">🌾</div><div><h2 id="dialogTitle"></h2><p id="dialogSub"></p></div></div>
+  <div class="content"><div id="slides"></div><div class="nav"><button id="prev" onclick="moveSlide(-1)">السابق</button><span class="count" id="count"></span><button id="next" onclick="moveSlide(1)">التالي</button></div></div>
+ </article>
+</div>
+<script>
+const data={
+ wheat:{icon:"🌾",ar:["حقل القمح","من البذرة تبدأ الحكاية","يركّز مشروع PLANTEX على دراسة إمكانية استخدام البكتيريا المحفزة لنمو النبات في معالجة بذور القمح. نبحث كيف يمكن لهذه المعاملة الحيوية أن تدعم بداية نمو النبات وتساهم في ممارسات زراعية أكثر استدامة.","لماذا القمح؟","يُعد القمح من المحاصيل الغذائية المهمة. وتحسين كفاءة بداية نموه قد يدعم الاستخدام الأفضل للموارد الزراعية.","🌾 بذور القمح","🧪 معاملة البذور","🌱 نمو أكثر دعمًا"],en:["Wheat Field","Every journey starts with a seed","PLANTEX explores the potential of plant growth-promoting bacteria as a biological seed treatment for wheat. The project investigates how this approach may support early plant growth and more sustainable agricultural practices.","Why wheat?","Wheat is an important food crop. Supporting its early growth may contribute to more efficient agricultural practices.","🌾 Wheat seeds","🧪 Seed treatment","🌱 Supported growth"]},
+ lab:{icon:"🧫",ar:["مختبر PGPR","البكتيريا النافعة للنبات","ندرس بكتيريا محفزة لنمو النبات (PGPR)، وهي مجموعة من البكتيريا التي قد تساعد النبات بطرق متعددة، مثل دعم توفر بعض العناصر الغذائية أو التأثير في نمو الجذور.","مصدر العزل","تم عزل البكتيريا المستخدمة في البحث من منطقة جذور نبات الشيح المحلي (Artemisia). ويُدرس دورها المحتمل في دعم نمو النبات.","🧫 بكتيريا PGPR","🌿 جذور نبات الشيح","🔬 دراسة علمية"],en:["PGPR Laboratory","Beneficial bacteria for plants","We study plant growth-promoting rhizobacteria (PGPR), a group of bacteria that can support plants in different ways, including nutrient availability and root development.","Bacterial source","The bacteria in this research were isolated from the root area of local wormwood (Artemisia). Their potential role in supporting plant growth is being investigated.","🧫 PGPR bacteria","🌿 Wormwood roots","🔬 Scientific research"]},
+ roots:{icon:"🌱",ar:["منطقة الجذور","عالمٌ صغير تحت التربة","تعيش حول جذور النباتات مجتمعات ميكروبية متنوعة. تركز أبحاث PGPR على فهم التفاعل بين البكتيريا النافعة والجذور، وكيف يمكن أن يرتبط هذا التفاعل بصحة النبات ونموه.","منطقة الرايزوسفير","تُسمى المنطقة المحيطة بالجذور بالرايزوسفير، وهي بيئة مهمة للتفاعلات بين الجذور والكائنات الدقيقة والتربة.","🌱 الجذور","🦠 الكائنات الدقيقة","🌍 التربة"],en:["Root Zone","A hidden world beneath the soil","Plant roots are surrounded by diverse microbial communities. PGPR research explores interactions between beneficial bacteria and roots, and how these relationships may relate to plant health and growth.","The rhizosphere","The area around plant roots is called the rhizosphere. It is an important environment for interactions among roots, microbes, and soil.","🌱 Roots","🦠 Microorganisms","🌍 Soil"]},
+ iot:{icon:"📡",ar:["محطة المستشعرات الذكية","نقيس لنفهم ونحسّن","تساعد مستشعرات إنترنت الأشياء (IoT) على متابعة ظروف الزراعة وجمع قراءات يمكن الاستفادة منها في اتخاذ قرارات أفضل بشأن الري والعناية بالنبات.","ماذا نراقب؟","رطوبة التربة، درجة الحرارة، الرقم الهيدروجيني pH، التوصيل الكهربائي EC، وشدة الضوء. القيم المعروضة في هذا النموذج توضيحية وليست قراءات حقيقية من أجهزة.","💧 رطوبة التربة","🌡️ درجة الحرارة","🧪 pH و EC","☀️ شدة الضوء"],en:["Smart IoT Station","Measure to understand and improve","Internet of Things (IoT) sensors help monitor growing conditions and collect readings that can inform better decisions about irrigation and plant care.","What do we monitor?","Soil moisture, temperature, pH, electrical conductivity (EC), and light intensity. Values in this demonstration are illustrative, not live sensor readings.","💧 Soil moisture","🌡️ Temperature","🧪 pH and EC","☀️ Light intensity"]},
+ greenhouse:{icon:"🏡",ar:["البيت المحمي الذكي","بيئة يمكن مراقبتها","يجمع البيت المحمي الذكي بين الزراعة والبيانات. يمكن الاستفادة من قراءات المستشعرات لفهم الظروف المحيطة بالنبات، كما يمكن للذكاء الاصطناعي المساعدة في تحليل البيانات ودعم القرار.","دور الذكاء الاصطناعي","يمكن للأنظمة الذكية تحليل الأنماط والتنبيه إلى تغيرات الظروف البيئية، مع بقاء القرار الزراعي النهائي مبنيًا على التحقق والخبرة.","🤖 تحليل البيانات","📊 متابعة الظروف","🌿 عناية أدق بالنبات"],en:["Smart Greenhouse","A monitored growing environment","A smart greenhouse connects agriculture with data. Sensor readings help us understand plant conditions, while AI can assist in analyzing data and supporting decisions.","The role of AI","Smart systems can analyze patterns and flag changes in environmental conditions, while agricultural decisions still rely on validation and expertise.","🤖 Data analysis","📊 Condition monitoring","🌿 More informed plant care"]},
+ solar:{icon:"☀️",ar:["محطة الطاقة الشمسية","طاقة أنظف لمزرعة أذكى","يمكن للطاقة الشمسية أن توفر مصدرًا متجددًا للكهرباء اللازمة لبعض تطبيقات المزرعة، مثل تشغيل أنظمة المراقبة أو المعدات منخفضة الاستهلاك.","الاستدامة","يساعد التفكير في مصادر الطاقة المتجددة على تصميم حلول زراعية تراعي كفاءة استخدام الموارد والأثر البيئي.","☀️ طاقة متجددة","🔋 تشغيل الأنظمة","🌍 أثر بيئي أقل"],en:["Solar Energy Station","Cleaner energy for smarter farming","Solar energy can provide renewable electricity for selected farm applications, such as monitoring systems and low-power equipment.","Sustainability","Considering renewable energy helps shape agricultural solutions that pay attention to resource efficiency and environmental impact.","☀️ Renewable energy","🔋 Powering systems","🌍 Lower environmental impact"]},
+ community:{icon:"🌳",ar:["حديقة المجتمع","الأثر يبدأ بخطوة","تتضمن مبادرة PLANTEX المجتمعية نشر الوعي بأهمية التشجير والعناية بالبيئة من خلال تشجير ساحات المدرسة وتشجيع الطلاب على المشاركة.","مبادرة تشاركية","عندما يشارك الطلاب في الزراعة والعناية بالنباتات، تتحول المعرفة البيئية إلى ممارسة يومية وسلوك مستدام.","🌱 تشجير المدرسة","🤝 مشاركة الطلاب","🌍 وعي بيئي"],en:["Community Garden","Impact begins with one step","The PLANTEX community initiative promotes awareness of planting and environmental care by greening school spaces and encouraging students to participate.","A shared initiative","When students take part in planting and caring for greenery, environmental knowledge becomes a daily practice and a sustainable habit.","🌱 Greening the school","🤝 Student participation","🌍 Environmental awareness"]},
+ team:{icon:"👩‍🔬",ar:["فريق PLANTEX","عقول تعمل من أجل نمو أفضل","يقف خلف PLANTEX فريق يجمع الفضول العلمي والعمل الجماعي والشغف بالابتكار الزراعي.","أعضاء الفريق","Noot — مؤسسة المبادرة\nMozan — قائدة الفريق\nHanan — عضوة الفريق","🌿 Noot","🌿 Mozan","🌿 Hanan"],en:["The PLANTEX Team","Curious minds growing a better future","PLANTEX is driven by a team bringing together scientific curiosity, collaboration, and a passion for agricultural innovation.","Meet the team","Noot — Initiative Founder\nMozan — Team Leader\nHanan — Team Member","🌿 Noot","🌿 Mozan","🌿 Hanan"]}
+};
+let current='wheat',step=0,lang='ar';
+function toggleLang(){lang=lang==='ar'?'en':'ar';document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.getElementById('langBtn').textContent=lang==='ar'?'EN':'عربي';document.getElementById('aboutBtn').textContent=lang==='ar'?'عن المشروع':'About';document.getElementById('eyebrow').textContent=lang==='ar'?'رحلة داخل مزرعة المستقبل':'A JOURNEY THROUGH THE FARM OF THE FUTURE';document.getElementById('mainTitle').textContent=lang==='ar'?'اكتشفوا عالم PLANTEX':'Explore PLANTEX';document.getElementById('intro').textContent=lang==='ar'?'مرحبًا بكم في مزرعتنا الذكية. اختاروا أي موقع على الخريطة لاستكشاف البحث العلمي والتقنيات التي تساعدنا على زراعة مستقبل أكثر استدامة.':'Welcome to our smart farm. Choose a location on the map to explore the research and technologies helping us grow a more sustainable future.';document.getElementById('hint').textContent=lang==='ar'?'👆 اضغطوا على أي علامة لبدء الاستكشاف':'👆 Tap any marker to start exploring';document.getElementById('mapLabel').textContent=lang==='ar'?'🌿 خريطة PLANTEX التفاعلية':'🌿 INTERACTIVE PLANTEX MAP';document.getElementById('footer').textContent=lang==='ar'?'PLANTEX · مشروع يجمع التقنية الحيوية والذكاء الاصطناعي وإنترنت الأشياء من أجل زراعة أكثر استدامة':'PLANTEX · Bringing biotechnology, AI and IoT together for more sustainable agriculture';document.querySelectorAll('.hotspot strong').forEach(el=>el.textContent=el.dataset[lang]);document.getElementById('prev').textContent=lang==='ar'?'السابق':'Previous';document.getElementById('next').textContent=lang==='ar'?'التالي':'Next';if(document.getElementById('modal').classList.contains('open'))render();}
+function openPlace(id){current=id;step=0;render();document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden'}
+function showWelcome(){current='welcome';step=0;render();document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden'}
+function render(){let d=current==='welcome'?{icon:'🌿',ar:['مرحبًا بكم في PLANTEX','نحو زراعة أكثر استدامة','PLANTEX مشروع يستكشف كيف يمكن للتقنية الحيوية والذكاء الاصطناعي وإنترنت الأشياء أن تتكامل لدعم الزراعة. تنقلوا بين مواقع الخريطة للتعرف على محاور البحث والتطبيق والمبادرة المجتمعية.','كيف تستكشفون الخريطة؟','اختاروا أي علامة على المزرعة لفتح المحطة الخاصة بها، ثم تنقلوا بين السلايدات باستخدام الأزرار. يمكنكم تغيير اللغة من أعلى الصفحة.','🌾 البحث','🧫 التقنية الحيوية','📡 التقنيات الذكية','🌳 المجتمع'],en:['Welcome to PLANTEX','Growing a more sustainable future','PLANTEX explores how biotechnology, artificial intelligence, and the Internet of Things can come together to support agriculture. Explore the map to discover the research, applications, and community initiative.','How to explore','Choose any marker on the farm to open its station, then move through the slides using the navigation buttons. You can change the language at the top of the page.','🌾 Research','🧫 Biotechnology','📡 Smart technologies','🌳 Community']}[lang]:data[current][lang];let title=d[0],sub=d[1],body=d[2],factTitle=d[3],fact=d[4],tags=d.slice(5);document.getElementById('dialogIcon').textContent=current==='welcome'?'🌿':data[current].icon;document.getElementById('dialogTitle').textContent=title;document.getElementById('dialogSub').textContent=sub;document.getElementById('slides').innerHTML=`<section class="slide ${step===0?'active':''}"><h3>${sub}</h3><p>${body}</p><div class="visual">${tags.map(t=>`<span>${t}</span>`).join('')}</div></section><section class="slide ${step===1?'active':''}"><h3>${factTitle}</h3><p>${fact.replace(/\n/g,'<br>')}</p><div class="fact">${lang==='ar'?'معلومة PLANTEX':'PLANTEX NOTE'} · ${lang==='ar'?'المحتوى تعريفي لأغراض العرض العلمي.':'Educational content for this science exhibition.'}</div></section>`;document.getElementById('count').textContent=(step+1)+' / 2';document.getElementById('prev').disabled=step===0;document.getElementById('next').disabled=step===1;}
+function moveSlide(n){step=Math.max(0,Math.min(1,step+n));render()}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow=''}
+function backdropClose(e){if(e.target.id==='modal')closeModal()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if(e.key==='ArrowRight'&&document.getElementById('modal').classList.contains('open'))moveSlide(lang==='ar'?-1:1);if(e.key==='ArrowLeft'&&document.getElementById('modal').classList.contains('open'))moveSlide(lang==='ar'?1:-1)});
+</script>
+</body>
+</html>
